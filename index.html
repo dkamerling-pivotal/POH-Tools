@@ -1,6 +1,6 @@
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="includeTools">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -26,9 +26,12 @@
     <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/1.2.1/jquery-migrate.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.js"></script>
+    <script src="app.js"></script>
+</head>
 
 </head>
-<body id="en">
+<body id="en" ng-controller="includeCtrl">
 
 
 <div class="ie-lt-9">
@@ -43,7 +46,7 @@
 
     <div class="logo-wrap">
         <div class="logo"><a href="http://pivotal.io/office-hours"><img src="http://www.emcworld.com/images/sponsor_logos/logo_sponsor_pivotal.png"></a></div>
-        <div class="mini-logo"><a href="http://pivotal.io/office-hours"><img src="https://d213dhlpdb53mu.cloudfront.net/assets/pivotal-square-logo-c766713bf8f203d45e0dbd6fdd5640de.svg"></a></div>
+        <!--<div class="mini-logo"><a href="http://pivotal.io/office-hours"><img src="https://d213dhlpdb53mu.cloudfront.net/assets/pivotal-square-logo-c766713bf8f203d45e0dbd6fdd5640de.svg"></a></div>-->
         <div class="bottom-triangle"></div>
         <div class="top-menu"></div>
     </div>
@@ -90,21 +93,23 @@
         <section id="concepts">
 
             <div class="wrapper">
+
                 <div class="row tools-header">
-                    <p>One of the big questions from new PMs has always been "where the hell do we learn all those cool exercises you guys use in Product Office Hours, D&Fs and the like?" To solve this, Lee Yanco created a knowledge base of our POH/decision-making techniques and exercises.  This website is an iteraciton on that to give Pivots something to reference and learn from, to help them make decisions about what exercises to use in what situations and how to do them.</p>
-                    <p>You can find the original document <a href="https://docs.google.com/spreadsheets/d/14jkMwXlhfooHzTmOmL_PLPfQhnvwucooR2H20UjqkJg/edit#gid=0">here</a></p>
 
-                    <p>This should be a living collection, so please feel free to suggest any exercises, explanations, or hot tips that may have been missed. Note that this is constrained specifically to POH/decision-making exercises - we could do entire other sheets on research techniques, synthesis techniques, retro formats, what have you.</p>
+                    <ng-include ng-hide="tool!='default'" src="'tools/intro.html'"></ng-include>
+                    <ng-include ng-show="tool=='dump'" src="'tools/dumpandsort.html'"></ng-include>
+                    <ng-include ng-show="tool=='designcritique'" src="'tools/designcritique.html'"></ng-include>
+                    <ng-include ng-show="tool=='persona'" src="'tools/personas.html'"></ng-include>
 
-                    <p>Thanks, and happy decision making,</p>
-                </div>
+
 
                 <section class="tools-wrapper">
                     <div class="tools-list">
-                        <figure><a alt="Dump & Sort" href="dumpandsort.html"><img src="brainstorm.jpeg" height="180" width="200"></a><span>Dump & Sort</span></figure>
-                        <figure><a alt="Design Critique" href=""><img src="Heatmap-Eye.png" height="180" width="200"></a><span>Design Critique</span></figure>
+                        <figure ng-click="tool='dump'"><a alt="Dump & Sort" href=""><img src="brainstorm.jpeg" height="180" width="200"></a><span>Dump & Sort</span></figure>
 
-                        <figure>
+                        <figure ng-click="tool='designcritique'"><a alt="Design Critique"><img src="Heatmap-Eye.png" height="180" width="200"></a><span>Design Critique</span></figure>
+
+                        <figure ng-click="tool='persona'">
                             <a alt="Personas" href=""><img src="faces.png" height="180" width="200"></a><span>Personas</span>
                         </figure>
 
@@ -115,6 +120,9 @@
                 </section>
 
             </div>
+                        </div>
+                    </div>
+                </div>
         </section>
 
     </section>
@@ -129,6 +137,7 @@
 <link href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.css" rel="stylesheet" >
 <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.pack.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-mousewheel/3.1.13/jquery.mousewheel.min.js"></script>
+<script src="app.js"></script>
 
 </body>
 </html>
